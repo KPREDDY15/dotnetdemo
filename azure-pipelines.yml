@@ -23,10 +23,11 @@ steps:
     publishWebProjects: true
   displayName: 'dotnet publish $(buildConfiguration)'
 
-- task: AzureWebApp@1
+- task: AzureRmWebAppDeployment@4
   inputs:
-    azureSubscription: 'connect33'
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure subscription 1(14096a48-c05f-4b74-9d5c-d09eb85d4111)'
     appType: 'webAppLinux'
-    appName: 'chakdhe'
-    package: '$(System.DefaultWorkingDirectory)//*.zip'
-    runtimeStack: 'DOTNETCORE|6.0'
+    WebAppName: '33batch'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    RuntimeStack: 'DOTNETCORE|6.0'
