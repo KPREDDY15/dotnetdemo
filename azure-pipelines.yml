@@ -1,9 +1,10 @@
 trigger:
 - main
+- develop
+- features/*
 
 pool:
   vmImage: 'windows-latest'
-
 
 variables:
   buildConfiguration: 'Release'
@@ -19,4 +20,13 @@ steps:
   inputs:
     command: 'publish'
     arguments: '--configuration $(buildConfiguration)'
-  displayName: 'dotnet build $(buildConfiguration)'
+    publishWebProjects: true
+  displayName: 'dotnet publish $(buildConfiguration)'
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'connect33'
+    appType: 'webAppLinux'
+    appName: 'chakdhe'
+    package: '$(System.DefaultWorkingDirectory)//*.zip'
+    runtimeStack: 'DOTNETCORE|6.0'
