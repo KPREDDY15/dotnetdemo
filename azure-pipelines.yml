@@ -26,7 +26,7 @@ steps:
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
-    azureSubscription: 'Azure subscription 1(14096a48-c05f-4b74-9d5c-d09eb85d4111)'
+    azureSubscription: 'abb'
     appType: 'webAppLinux'
     WebAppName: '33batch'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
